@@ -1,21 +1,27 @@
 package com.appsinnovate.myapplication.ui.fragments.home;
 
+import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.appsinnovate.myapplication.R;
 import com.appsinnovate.myapplication.adapter.HomeAdapter;
 import com.appsinnovate.myapplication.databinding.HomeFragmentBinding;
+import com.appsinnovate.myapplication.ui.activties.MainActivity;
+import com.google.android.material.appbar.AppBarLayout;
+
+import java.util.Objects;
 
 public class HomeFragment extends Fragment {
 
@@ -25,29 +31,25 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         mViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
-
-        HomeFragmentBinding binding = DataBindingUtil.inflate(inflater, R.layout.home_fragment, container, false);
+        customizeToolbar();
+        HomeFragmentBinding binding = HomeFragmentBinding.inflate(inflater);
         binding.setHomeViewModel(mViewModel);
         binding.setLifecycleOwner(this);
-
-        mViewModel.liveCountries.observe(getViewLifecycleOwner(), countriesItems -> {
-            if (countriesItems != null) {
-                GridLayoutManager manager = new GridLayoutManager(getContext(), 2);
-                manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-                    @Override
-                    public int getSpanSize(int position) {
-                        if (countriesItems.get(position).getId() == 0) {
-                            return 2;
-                        } else {
-                            return 1;
-                        }
-                    }
-                });
-                Log.e("test", "bindingAdapter");
-                binding.recyclerView.setLayoutManager(manager);
-                binding.recyclerView.setAdapter(new HomeAdapter(countriesItems, getContext()));
-            }
-        });
+        HomeAdapter adapter = new HomeAdapter(item ->
+                Navigation.findNavController(Objects.requireNonNull(getView()))
+                        .navigate(HomeFragmentDirections.actionHomeFragmentToDetailsFragment(item.getId(), item.getName())));
+        GridLayoutManager manager = new GridLayoutManager(getContext(), 2);
+        binding.recyclerView.setLayoutManager(manager);
+        binding.recyclerView.setAdapter(adapter);
         return binding.getRoot();
+    }
+
+    private void customizeToolbar() {
+        TextView toolbarTitle = ((MainActivity) getActivity()).textView;
+        AppBarLayout appBarLayout = ((MainActivity) getActivity()).appbar;
+        appBarLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        toolbarTitle.setText(R.string.continents);
+        toolbarTitle.setTextColor(Color.WHITE);
+        toolbarTitle.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_earth, 0, 0);
     }
 }

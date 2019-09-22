@@ -1,17 +1,18 @@
 package com.appsinnovate.myapplication.model.get_info;
 
 import com.appsinnovate.myapplication.model.BaseResponse;
-import com.squareup.moshi.Json;
+import com.google.gson.annotations.SerializedName;
 
 public class CountryInfoResponseModel extends BaseResponse {
-    @Json(name = "country_info")
+    @SerializedName("country_info")
     private CountryInfo countryInfo;
 
     public CountryInfo getCountryInfo() {
         return countryInfo;
     }
 
-    private class CountryInfo {
+    public class CountryInfo {
+        @SerializedName("info")
         private String info;
 
         public String getInfo() {

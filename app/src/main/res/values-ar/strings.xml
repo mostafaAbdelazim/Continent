@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Appsinnovate</string>
+    <string name="continents">القارات</string>
+    <string name="images">الصور:</string>
+    <string name="info">المعلومات:</string>
+</resources>

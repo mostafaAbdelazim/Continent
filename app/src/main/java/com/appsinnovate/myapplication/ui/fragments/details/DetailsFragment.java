@@ -1,38 +1,49 @@
 package com.appsinnovate.myapplication.ui.fragments.details;
 
-import androidx.lifecycle.ViewModelProviders;
-
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import com.appsinnovate.myapplication.databinding.DetailsFragmentBinding;
+import com.appsinnovate.myapplication.ui.activties.MainActivity;
+import com.google.android.material.appbar.AppBarLayout;
 
-import com.appsinnovate.myapplication.R;
+import java.util.Objects;
 
 public class DetailsFragment extends Fragment {
 
     private DetailsViewModel mViewModel;
-
-    public static DetailsFragment newInstance() {
-        return new DetailsFragment();
-    }
+    private DetailsFragmentArgs args;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.details_fragment, container, false);
+        args = DetailsFragmentArgs.fromBundle(Objects.requireNonNull(getArguments()));
+        DetailsViewModelFactory factory = new DetailsViewModelFactory(args.getCountryId());
+
+        mViewModel = ViewModelProviders.of(this, factory).get(DetailsViewModel.class);
+        customizeToolbar();
+        DetailsFragmentBinding binding = DetailsFragmentBinding.inflate(inflater);
+        binding.setDetailsViewModel(mViewModel);
+        binding.setLifecycleOwner(this);
+
+        return binding.getRoot();
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(DetailsViewModel.class);
-        // TODO: Use the ViewModel
+    private void customizeToolbar() {
+        TextView toolbarTitle = ((MainActivity) getActivity()).textView;
+        AppBarLayout appBarLayout = ((MainActivity) getActivity()).appbar;
+        appBarLayout.setBackgroundColor(Color.WHITE);
+        toolbarTitle.setText(args.getCountryName());
+        toolbarTitle.setTextColor(Color.BLACK);
+        toolbarTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
     }
-
 }

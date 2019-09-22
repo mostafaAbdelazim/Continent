@@ -25,7 +25,9 @@
         tools:layout="@layout/details_fragment">
         <argument
             android:name="country_id"
-            android:defaultValue="1"
             app:argType="integer" />
+        <argument
+            android:name="country_name"
+            app:argType="string" />
     </fragment>
 </navigation>

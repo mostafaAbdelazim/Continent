@@ -1,19 +1,19 @@
 package com.appsinnovate.myapplication.model.get_flag;
 
 import com.appsinnovate.myapplication.model.BaseResponse;
-import com.squareup.moshi.Json;
+import com.google.gson.annotations.SerializedName;
 
 public class FlagResponseModel extends BaseResponse {
-    @Json(name = "country_flag")
+    @SerializedName("country_flag")
     private CountryFlag countryFlag;
 
     public CountryFlag getCountryFlag() {
         return countryFlag;
     }
 
-    private class CountryFlag {
-        @Json(name = "flag_img")
-        String flagImage;
+    public class CountryFlag {
+        @SerializedName("flag_img")
+        private String flagImage;
 
         public String getFlagImage() {
             return flagImage;

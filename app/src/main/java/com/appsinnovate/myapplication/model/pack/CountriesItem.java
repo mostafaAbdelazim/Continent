@@ -1,7 +1,5 @@
 package com.appsinnovate.myapplication.model.pack;
 
-import androidx.annotation.Nullable;
-
 import com.google.gson.annotations.SerializedName;
 
 import javax.annotation.Generated;
@@ -18,12 +16,9 @@ public class CountriesItem {
     @SerializedName("id")
     private int id;
 
-    public CountriesItem(int id, String name) {
+    public CountriesItem(int id, String name, String flagImg) {
         this.id = id;
         this.name = name;
-    }
-
-    public void setFlagImg(String flagImg) {
         this.flagImg = flagImg;
     }
 
@@ -31,20 +26,24 @@ public class CountriesItem {
         return flagImg;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFlagImg(String flagImg) {
+        this.flagImg = flagImg;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override
@@ -56,14 +55,14 @@ public class CountriesItem {
                         ",id = '" + id + '\'' +
                         "}";
     }
-
-    @Override
-    public boolean equals(@Nullable Object obj) {
-        if (obj instanceof CountriesItem) {
-            return this == obj;
-        } else {
-            return false;
-        }
-
-    }
+//
+//    @Override
+//    public boolean equals(@Nullable Object obj) {
+//        if (obj instanceof CountriesItem) {
+//            return this == obj;
+//        } else {
+//            return false;
+//        }
+//
+//    }
 }
