@@ -6,7 +6,6 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class CountryImagesResponseModel extends BaseResponse {
-
     @SerializedName("country_images")
     private CountryImages countryImages;
 

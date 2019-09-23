@@ -19,10 +19,14 @@ public class DetailsViewModel extends ViewModel {
     private MutableLiveData<DetailsObject> _detailsObjectMutableLiveData = new MutableLiveData<>();
     public LiveData<DetailsObject> detailsObjectLiveData = _detailsObjectMutableLiveData;
 
-    public DetailsViewModel(int id) {
+    DetailsViewModel(int id) {
         ApiService service = ApiClient.getClient().create(ApiService.class);
         Single.zip(service.getFlag(id), service.getInfo(id), service.getImages(id),
-                (flagResponseModel, countryInfoResponseModel, countryImagesResponseModel) -> new DetailsObject(countryInfoResponseModel, countryImagesResponseModel, flagResponseModel)).subscribeOn(Schedulers.io())
+                (flagResponseModel, countryInfoResponseModel, countryImagesResponseModel) ->
+                        new DetailsObject(countryInfoResponseModel,
+                                countryImagesResponseModel,
+                                flagResponseModel))
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new SingleObserver<DetailsObject>() {
                     @Override

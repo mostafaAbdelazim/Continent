@@ -7,17 +7,15 @@
 
         <variable
             name="country"
-            type="com.appsinnovate.myapplication.model.pack.CountriesItem" />
+            type="com.appsinnovate.myapplication.model.get_continent_byId.Country" />
     </data>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginBottom="12dp"
-        app:cardCornerRadius="8dp"
+        android:layout_margin="@dimen/twelve"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="@dimen/eight"
         app:cardElevation="3dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,23 +26,25 @@
                 android:id="@+id/flag"
                 imageURL="@{country.flagImg}"
                 android:layout_width="0dp"
-                android:layout_height="110dp"
+                android:layout_height="@dimen/country_iamge_height"
+                android:background="@android:color/white"
                 android:scaleType="fitXY"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription"
                 tools:src="@drawable/ic_launcher_background" />
 
             <TextView
                 android:id="@+id/name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="6dp"
+                android:layout_marginTop="@dimen/sixteen"
+                android:layout_marginBottom="@dimen/eight"
                 android:text="@{country.name}"
                 android:textAlignment="center"
                 android:textColor="@color/text_color"
-                android:textSize="19sp"
+                android:textSize="@dimen/text_size"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

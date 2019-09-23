@@ -2,7 +2,6 @@ package com.appsinnovate.myapplication.network;
 
 import com.appsinnovate.myapplication.utils.Const;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-import com.squareup.moshi.Moshi;
 
 import java.util.concurrent.TimeUnit;
 
@@ -21,7 +20,6 @@ public class ApiClient {
             initOkHttp();
 
         if (retrofit == null) {
-            Moshi moshi = new Moshi.Builder().build();
             retrofit = new Retrofit.Builder()
                     .baseUrl(Const.BASE_URL)
                     .client(okHttpClient)

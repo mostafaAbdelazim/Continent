@@ -2,7 +2,6 @@ package com.appsinnovate.myapplication.ui.fragments.home;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,28 +23,31 @@ import com.google.android.material.appbar.AppBarLayout;
 import java.util.Objects;
 
 public class HomeFragment extends Fragment {
-
-    private HomeViewModel mViewModel;
+    private HomeFragmentBinding binding;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        mViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
+        HomeViewModel mViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
         customizeToolbar();
-        HomeFragmentBinding binding = HomeFragmentBinding.inflate(inflater);
+        binding = HomeFragmentBinding.inflate(inflater);
         binding.setHomeViewModel(mViewModel);
         binding.setLifecycleOwner(this);
+        setupRecycler();
+        return binding.getRoot();
+    }
+
+    private void setupRecycler() {
         HomeAdapter adapter = new HomeAdapter(item ->
                 Navigation.findNavController(Objects.requireNonNull(getView()))
                         .navigate(HomeFragmentDirections.actionHomeFragmentToDetailsFragment(item.getId(), item.getName())));
         GridLayoutManager manager = new GridLayoutManager(getContext(), 2);
         binding.recyclerView.setLayoutManager(manager);
         binding.recyclerView.setAdapter(adapter);
-        return binding.getRoot();
     }
 
     private void customizeToolbar() {
-        TextView toolbarTitle = ((MainActivity) getActivity()).textView;
+        TextView toolbarTitle = ((MainActivity) Objects.requireNonNull(getActivity())).textView;
         AppBarLayout appBarLayout = ((MainActivity) getActivity()).appbar;
         appBarLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
         toolbarTitle.setText(R.string.continents);

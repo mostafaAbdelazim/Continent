@@ -10,20 +10,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.appsinnovate.myapplication.databinding.CellBinding;
 import com.appsinnovate.myapplication.databinding.ContinentLayoutBinding;
-import com.appsinnovate.myapplication.model.pack.CountriesItem;
+import com.appsinnovate.myapplication.model.get_continent_byId.Country;
 
-public class HomeAdapter extends ListAdapter<CountriesItem, RecyclerView.ViewHolder> {
-    private static final DiffUtil.ItemCallback<CountriesItem> DIFF_CALLBACK =
-            new DiffUtil.ItemCallback<CountriesItem>() {
+public class HomeAdapter extends ListAdapter<Country, RecyclerView.ViewHolder> {
+    private static final DiffUtil.ItemCallback<Country> DIFF_CALLBACK =
+            new DiffUtil.ItemCallback<Country>() {
                 @Override
                 public boolean areItemsTheSame(
-                        @NonNull CountriesItem oldCountry, @NonNull CountriesItem newCountry) {
+                        @NonNull Country oldCountry, @NonNull Country newCountry) {
                     return oldCountry == newCountry;
                 }
 
                 @Override
                 public boolean areContentsTheSame(
-                        @NonNull CountriesItem oldCountry, @NonNull CountriesItem newCountry) {
+                        @NonNull Country oldCountry, @NonNull Country newCountry) {
                     return oldCountry.getId() == newCountry.getId();
                 }
             };
@@ -55,7 +55,7 @@ public class HomeAdapter extends ListAdapter<CountriesItem, RecyclerView.ViewHol
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        CountriesItem country = getItem(position);
+        Country country = getItem(position);
         if (holder instanceof ContinentHolder) {
             ((ContinentHolder) holder).bind(country);
         } else if (holder instanceof HomeViewHolder) {
@@ -64,7 +64,7 @@ public class HomeAdapter extends ListAdapter<CountriesItem, RecyclerView.ViewHol
     }
 
     public interface OnItemClickListener {
-        void onItemClick(CountriesItem item);
+        void onItemClick(Country item);
     }
 
     static class ContinentHolder extends RecyclerView.ViewHolder {
@@ -82,8 +82,8 @@ public class HomeAdapter extends ListAdapter<CountriesItem, RecyclerView.ViewHol
 
         }
 
-        void bind(CountriesItem countriesItem) {
-            binding.setContinent(countriesItem);
+        void bind(Country country) {
+            binding.setContinent(country);
             binding.executePendingBindings();
         }
     }
@@ -102,9 +102,9 @@ public class HomeAdapter extends ListAdapter<CountriesItem, RecyclerView.ViewHol
             return new HomeViewHolder(binding);
         }
 
-        void bind(CountriesItem countriesItem, OnItemClickListener onItemClickListener) {
-            binding.getRoot().setOnClickListener(v -> onItemClickListener.onItemClick(countriesItem));
-            binding.setCountry(countriesItem);
+        void bind(Country country, OnItemClickListener onItemClickListener) {
+            binding.getRoot().setOnClickListener(v -> onItemClickListener.onItemClick(country));
+            binding.setCountry(country);
             binding.executePendingBindings();
         }
 

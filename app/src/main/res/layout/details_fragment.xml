@@ -19,19 +19,20 @@
             android:id="@+id/flag"
             imageURL="@{detailsViewModel.detailsObjectLiveData.getFlagResponseModel.countryFlag.flagImage}"
             android:layout_width="match_parent"
-            android:layout_height="190dp"
+            android:layout_height="@dimen/details_flag_height"
             android:scaleType="fitXY"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/infoTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginStart="@dimen/twenty_four"
+            android:layout_marginTop="@dimen/eight"
+            android:layout_marginEnd="@dimen/twenty_four"
             android:text="@string/info"
             android:textAlignment="textStart"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
@@ -42,10 +43,10 @@
 
         <ScrollView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginBottom="8dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/eight"
+            android:layout_marginEnd="@dimen/twenty_four"
+            android:layout_marginBottom="@dimen/eight"
             app:layout_constraintBottom_toTopOf="@+id/seperator"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/infoTitle"
@@ -57,16 +58,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@{detailsViewModel.detailsObjectLiveData.getInfoResponseModel.countryInfo.info}"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:textColor="@color/light_text_color"
-                android:textSize="17sp" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/light_text_color" />
         </ScrollView>
 
         <View
             android:id="@+id/seperator"
             android:layout_width="0dp"
-            android:layout_height="2dp"
-            android:layout_marginBottom="8dp"
+            android:layout_height="@dimen/two"
+            android:layout_marginBottom="@dimen/eight"
             android:background="@color/seperator_color"
             app:layout_constraintBottom_toTopOf="@+id/images_title"
             app:layout_constraintEnd_toEndOf="parent"
@@ -76,9 +76,9 @@
             android:id="@+id/images_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginStart="@dimen/twenty_four"
+            android:layout_marginEnd="@dimen/twenty_four"
+            android:layout_marginBottom="@dimen/eight"
             android:text="@string/images"
             android:textAlignment="textStart"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
@@ -93,9 +93,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:clipToPadding="false"
-            android:paddingStart="24dp"
-            android:paddingEnd="24dp"
-            android:paddingBottom="8dp"
+            android:paddingStart="@dimen/twenty_four"
+            android:paddingEnd="@dimen/twenty_four"
+            android:paddingBottom="@dimen/eight"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="four">4dp</dimen>
+    <dimen name="eight">8dp</dimen>
+    <dimen name="twelve">12dp</dimen>
+    <dimen name="sixteen">16dp</dimen>
+    <dimen name="twenty_four">24dp</dimen>
+    <dimen name="thirty_two">32dp</dimen>
+    <dimen name="forty">40dp</dimen>
+    <dimen name="text_size">19sp</dimen>
+    <dimen name="continent_image_height">140dp</dimen>
+    <dimen name="country_iamge_height">110dp</dimen>
+    <dimen name="two">2dp</dimen>
+    <dimen name="details_flag_height">170dp</dimen>
+</resources>

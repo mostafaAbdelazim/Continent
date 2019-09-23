@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.appsinnovate.myapplication.R;
 import com.appsinnovate.myapplication.adapter.DetailsAdapter;
 import com.appsinnovate.myapplication.adapter.HomeAdapter;
-import com.appsinnovate.myapplication.model.pack.CountriesItem;
+import com.appsinnovate.myapplication.model.get_continent_byId.Country;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
@@ -18,7 +18,7 @@ import java.util.List;
 
 public class BindingAdapters {
     @BindingAdapter("listData")
-    public static void listData(RecyclerView view, List<CountriesItem> data) {
+    public static void listData(RecyclerView view, List<Country> data) {
         if (data != null) {
             GridLayoutManager manager = (GridLayoutManager) view.getLayoutManager();
             HomeAdapter adapter = (HomeAdapter) view.getAdapter();

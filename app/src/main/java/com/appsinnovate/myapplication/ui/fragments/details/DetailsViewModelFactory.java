@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModelProvider;
 public class DetailsViewModelFactory implements ViewModelProvider.Factory {
     private int id;
 
-    public DetailsViewModelFactory(int id) {
+    DetailsViewModelFactory(int id) {
         this.id = id;
     }
 
